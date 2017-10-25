@@ -7,8 +7,8 @@ export class User {
 
   constructor(id: number, firstName: string, lastName: string, emaill: string) {
     this.id = id;
-    this.firstname = emaill;
-    this.lastname = emaill;
+    this.firstname = firstName;
+    this.lastname = lastName;
     this.email = emaill;
   }
 

@@ -12,33 +12,33 @@ export class UserService {
 
   constructor(private http: Http) { }
 
-
   findAll(): Observable<User[]>  {
     return this.http.get(this.apiUrl)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
-
   findById(id: number): Observable<User> {
-    this.http.get(this.apiUrl + id)
-      .map((res: Response) => {
-        console.log('User by ID ---> ', res);
-      })
+    return this.http.get(this.apiUrl + '/' + id)
+      .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error.json().error || 'Server error '));
-    return null;
   }
 
   saveUser(user: User): Observable<User> {
-    return null;
+    return this.http.post(this.apiUrl, user)
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'))
   }
 
   deleteUserById(id: number): Observable<boolean> {
-    return null;
+    return this.http.delete(this.apiUrl + '/' + id)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   updateUser(user: User): Observable<User> {
-    return null;
+    return this.http.put(this.apiUrl, user)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error.json().error || 'Server error'));
   }
 
 }

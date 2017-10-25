@@ -48,6 +48,15 @@ export class UserListComponent implements OnInit {
   }
 
   deleteUser(user: User) {
+    if (user) {
+      this.userService.deleteUserById(user.id).subscribe(
+        res => {
+          this.getAllUsers();
+          this.router.navigate(['/user']);
+          console.log('done');
+        }
+      );
+    }
     console.log('DELETE USER', user);
   }
 
